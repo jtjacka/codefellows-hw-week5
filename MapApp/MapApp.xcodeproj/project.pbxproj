@@ -78,10 +78,10 @@
 		1F49DFC81B94EC2A008AEB3D = {
 			isa = PBXGroup;
 			children = (
-				1FD9B9421B960C5500137788 /* MapKit.framework */,
 				1F49DFD31B94EC2A008AEB3D /* MapApp */,
 				1F49DFED1B94EC2A008AEB3D /* MapAppTests */,
 				1F49DFD21B94EC2A008AEB3D /* Products */,
+				1FD9B94E1B965CF700137788 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,6 +173,14 @@
 				1F49DFDC1B94EC2A008AEB3D /* ViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		1FD9B94E1B965CF700137788 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FD9B9421B960C5500137788 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

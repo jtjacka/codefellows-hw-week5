@@ -8,4 +8,4 @@
 
 #import "Constants.h"
 
-NSString const *kMyCountry = @"Seattle";
+NSString *const kMyCountry = @"Seattle";
