@@ -88,20 +88,35 @@
 #pragma mark - Map View Delegate
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
   
+  //Ignore For Current User Location
+  if ([annotation isKindOfClass:[MKUserLocation class]]) {
+    return nil;
+  }
+  
   //Add View to Annotation
   MKAnnotationView *newAnnotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AnnotationView"];
   newAnnotationView.annotation = annotation;
   
-  newAnnotationView.canShowCallout = true;
+  if(!newAnnotationView) {
+    newAnnotationView = [[MKAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"AnootationView"];
+  }
   
+  newAnnotationView.canShowCallout = true;
   UIButton *rightCallout = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   newAnnotationView.rightCalloutAccessoryView = rightCallout;
+  
+  //Add Segue to Button
+  [rightCallout addTarget:self action:@selector(rightCalloutAction) forControlEvents:UIControlEventTouchUpInside];
   
   
   return newAnnotationView;
 }
 
-/*
+#pragma mark - Perform Segue From Callout
+-(void)rightCalloutAction{
+  [self performSegueWithIdentifier:@"ShowReminderDetail" sender:self];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -109,6 +124,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
