@@ -34,6 +34,7 @@
 		1FB10AF61B978125004C2685 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB10AF51B978125004C2685 /* libsqlite3.dylib */; };
 		1FB10AF81B97812C004C2685 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB10AF71B97812C004C2685 /* Accounts.framework */; };
 		1FB10AFA1B978137004C2685 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB10AF91B978137004C2685 /* Social.framework */; };
+		1FB10AFC1B9783EE004C2685 /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB10AFB1B9783EE004C2685 /* Keys.m */; };
 		1FD9B9411B96092D00137788 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9B9401B96092D00137788 /* MapViewController.m */; };
 		1FD9B9431B960C5500137788 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD9B9421B960C5500137788 /* MapKit.framework */; };
 		1FD9B9491B96121600137788 /* CodeChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9B9481B96121600137788 /* CodeChallenge.m */; };
@@ -85,6 +86,8 @@
 		1FB10AF51B978125004C2685 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1FB10AF71B97812C004C2685 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		1FB10AF91B978137004C2685 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		1FB10AFB1B9783EE004C2685 /* Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Keys.m; path = MapApp.xcodeproj/../Keys.m; sourceTree = SOURCE_ROOT; };
+		1FB10AFD1B978411004C2685 /* Keys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
 		1FD9B93F1B96092D00137788 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1FD9B9401B96092D00137788 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1FD9B9421B960C5500137788 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -157,6 +160,8 @@
 				1FD9B9471B9611C500137788 /* Controller */,
 				1FD9B9461B9611C000137788 /* View */,
 				1FD9B9451B9611BC00137788 /* Model */,
+				1FB10AFB1B9783EE004C2685 /* Keys.m */,
+				1FB10AFD1B978411004C2685 /* Keys.h */,
 				1FD9B94B1B964B3F00137788 /* Constants.h */,
 				1FD9B94C1B964B3F00137788 /* Constants.m */,
 				1FD9B9441B9611B000137788 /* Code Challenge */,
@@ -369,6 +374,7 @@
 				1FD9B9491B96121600137788 /* CodeChallenge.m in Sources */,
 				1FD9B9411B96092D00137788 /* MapViewController.m in Sources */,
 				1F49DFDA1B94EC2A008AEB3D /* AppDelegate.m in Sources */,
+				1FB10AFC1B9783EE004C2685 /* Keys.m in Sources */,
 				1FD9B94D1B964B3F00137788 /* Constants.m in Sources */,
 				1F49DFD71B94EC2A008AEB3D /* main.m in Sources */,
 			);

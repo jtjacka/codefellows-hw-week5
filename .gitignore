@@ -16,8 +16,8 @@ DerivedData
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-**.Keys.h
-**.Keys.m
+**/Keys.h
+**/Keys.m
 
 ## Other
 *.xccheckout
