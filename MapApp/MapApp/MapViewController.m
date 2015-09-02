@@ -9,6 +9,7 @@
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 
