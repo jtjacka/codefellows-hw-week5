@@ -46,5 +46,22 @@
   return tempObject;
 }
 
+//MARK: Tuesday
+-(BOOL)isAnagram:(NSString *)firstString secondString:(NSString *)secondString {
+  
+  if (firstString.length != secondString.length)
+    return false;
+  
+  NSCountedSet *firstSet = [[NSCountedSet alloc]init];
+  NSCountedSet *secondSet = [[NSCountedSet alloc]init];
+  
+  for (int i = 0; i < firstString.length; i++){
+    [firstSet addObject:@([firstString characterAtIndex:i])];
+    [secondSet addObject:@([secondString characterAtIndex:i])];
+  }
+  
+  return [firstSet isEqual:secondSet];
+}
+
 
 @end
