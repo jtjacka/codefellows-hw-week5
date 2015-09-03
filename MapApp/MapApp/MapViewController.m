@@ -10,8 +10,10 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import "ReminderDetailTableViewController.h"
 
-@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *toolBarButton1;
@@ -19,12 +21,15 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *toolBarButton3;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
+
 @end
 
 @implementation MapViewController
 
 - (void)viewDidLoad {
+  
     [super viewDidLoad];
+  
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = true;
     
@@ -34,11 +39,21 @@
     self.locationManager.desiredAccuracy = 10;
     
     [self.locationManager requestWhenInUseAuthorization];
+  
     [self.locationManager startUpdatingLocation];
   
     //Taken from Lecture
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(47.6235, -122.3363), 10, 10) animated:true];
 
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+  //Parse Login
+  if(![PFUser currentUser]) {
+    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+    logInViewController.delegate = self;
+    [self presentViewController:logInViewController animated:YES completion:nil];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,6 +89,15 @@
   }
 }
 
+- (void)logInViewController:(PFLogInViewController *)controller
+               didLogInUser:(PFUser *)user {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - CLLocationManagerDelegate
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -95,35 +119,35 @@
   }
   
   //Add View to Annotation
-  MKAnnotationView *newAnnotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AnnotationView"];
+  MKPinAnnotationView *newAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AnnotationView"];
   newAnnotationView.annotation = annotation;
   
   if(!newAnnotationView) {
-    newAnnotationView = [[MKAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"AnootationView"];
+    newAnnotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"AnootationView"];
   }
   
   newAnnotationView.canShowCallout = true;
   UIButton *rightCallout = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   newAnnotationView.rightCalloutAccessoryView = rightCallout;
   
-  //Add Segue to Button
-  [rightCallout addTarget:self action:@selector(rightCalloutAction) forControlEvents:UIControlEventTouchUpInside];
-  
-  
   return newAnnotationView;
 }
 
 #pragma mark - Perform Segue From Callout
--(void)rightCalloutAction{
-  [self performSegueWithIdentifier:@"ShowReminderDetail" sender:self];
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+  [self performSegueWithIdentifier:@"ShowReminderDetail" sender:view.annotation];
 }
+
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(MKPointAnnotation *)sender {
+  if ([segue.identifier  isEqualToString: @"ShowReminderDetail"]) {
+    ReminderDetailTableViewController *destinationVC = segue.destinationViewController;
+    destinationVC.pinLocation = sender.coordinate;
+  }
+  
 }
 
 

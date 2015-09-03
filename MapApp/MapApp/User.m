@@ -7,3 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
+
+@implementation User
+
+@dynamic reminders;
+
++ (void)load {
+  [self registerSubclass];
+}
+
+@end
+

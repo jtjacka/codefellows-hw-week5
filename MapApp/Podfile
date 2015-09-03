@@ -1,0 +1,3 @@
+xcodeproj ‘MapApp’
+
+pod 'ParseUI'

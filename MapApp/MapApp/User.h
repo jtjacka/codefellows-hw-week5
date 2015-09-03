@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 Jeffrey Jacka. All rights reserved.
 //
 
-#ifndef MapApp_User_h
-#define MapApp_User_h
+#import <Parse/Parse.h>
+#import <Parse/PFObject+Subclass.h>
 
+@interface User : PFUser<PFSubclassing>
 
-#endif
+@property (strong, nonatomic) NSMutableArray *reminders;
+
+@end

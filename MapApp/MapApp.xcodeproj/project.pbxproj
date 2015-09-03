@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F16F27B1B97D26E00EB778D /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F16F27A1B97D26E00EB778D /* ParseUI.framework */; };
 		1F49DFD71B94EC2A008AEB3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFD61B94EC2A008AEB3D /* main.m */; };
 		1F49DFDA1B94EC2A008AEB3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFD91B94EC2A008AEB3D /* AppDelegate.m */; };
 		1F49DFDD1B94EC2A008AEB3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFDC1B94EC2A008AEB3D /* ViewController.m */; };
@@ -15,6 +16,8 @@
 		1F49DFE51B94EC2A008AEB3D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F49DFE31B94EC2A008AEB3D /* LaunchScreen.xib */; };
 		1F49DFF11B94EC2A008AEB3D /* MapAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFF01B94EC2A008AEB3D /* MapAppTests.m */; };
 		1F49DFFB1B94FFF5008AEB3D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFFA1B94FFF5008AEB3D /* User.m */; };
+		1F7676BD1B98B05500730C76 /* ReminderDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7676BC1B98B05500730C76 /* ReminderDetailTableViewController.m */; };
+		1F7676BF1B98C61100730C76 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7676BE1B98C61100730C76 /* Reminder.m */; };
 		1FB10ADC1B978076004C2685 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB10AD51B978076004C2685 /* Bolts.framework */; };
 		1FB10ADD1B978076004C2685 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB10AD61B978076004C2685 /* Parse.framework */; };
 		1FB10ADE1B978076004C2685 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB10AD71B978076004C2685 /* ParseCrashReporting.framework */; };
@@ -52,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F16F27A1B97D26E00EB778D /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = ../../../../../Downloads/ParseUI.framework; sourceTree = "<group>"; };
 		1F49DFD11B94EC2A008AEB3D /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F49DFD51B94EC2A008AEB3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F49DFD61B94EC2A008AEB3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,6 +71,10 @@
 		1F49DFF01B94EC2A008AEB3D /* MapAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapAppTests.m; sourceTree = "<group>"; };
 		1F49DFFA1B94FFF5008AEB3D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		1F49DFFC1B95000A008AEB3D /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		1F7676BB1B98B05500730C76 /* ReminderDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderDetailTableViewController.h; sourceTree = "<group>"; };
+		1F7676BC1B98B05500730C76 /* ReminderDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderDetailTableViewController.m; sourceTree = "<group>"; };
+		1F7676BE1B98C61100730C76 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
+		1F7676C01B98C62B00730C76 /* Reminder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
 		1FB10AD51B978076004C2685 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		1FB10AD61B978076004C2685 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1FB10AD71B978076004C2685 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -111,6 +119,7 @@
 				1FB10AEE1B9780E1004C2685 /* Security.framework in Frameworks */,
 				1FB10AEC1B9780AE004C2685 /* QuartzCore.framework in Frameworks */,
 				1FB10AEA1B9780A7004C2685 /* CoreLocation.framework in Frameworks */,
+				1F16F27B1B97D26E00EB778D /* ParseUI.framework in Frameworks */,
 				1FB10AE81B9780A0004C2685 /* CoreGraphics.framework in Frameworks */,
 				1FB10AE61B978099004C2685 /* CFNetwork.framework in Frameworks */,
 				1FB10AE41B978091004C2685 /* AudioToolbox.framework in Frameworks */,
@@ -210,6 +219,8 @@
 		1FD9B9451B9611BC00137788 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F7676BE1B98C61100730C76 /* Reminder.m */,
+				1F7676C01B98C62B00730C76 /* Reminder.h */,
 				1F49DFFA1B94FFF5008AEB3D /* User.m */,
 				1F49DFFC1B95000A008AEB3D /* User.h */,
 			);
@@ -231,6 +242,8 @@
 			children = (
 				1FD9B93F1B96092D00137788 /* MapViewController.h */,
 				1FD9B9401B96092D00137788 /* MapViewController.m */,
+				1F7676BB1B98B05500730C76 /* ReminderDetailTableViewController.h */,
+				1F7676BC1B98B05500730C76 /* ReminderDetailTableViewController.m */,
 				1F49DFDB1B94EC2A008AEB3D /* ViewController.h */,
 				1F49DFDC1B94EC2A008AEB3D /* ViewController.m */,
 			);
@@ -243,6 +256,7 @@
 				1FB10AF91B978137004C2685 /* Social.framework */,
 				1FB10AF71B97812C004C2685 /* Accounts.framework */,
 				1FB10AF51B978125004C2685 /* libsqlite3.dylib */,
+				1F16F27A1B97D26E00EB778D /* ParseUI.framework */,
 				1FB10AF31B978103004C2685 /* libz.dylib */,
 				1FB10AF11B9780F7004C2685 /* SystemConfiguration.framework */,
 				1FB10AEF1B9780EB004C2685 /* StoreKit.framework */,
@@ -370,7 +384,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F49DFFB1B94FFF5008AEB3D /* User.m in Sources */,
+				1F7676BD1B98B05500730C76 /* ReminderDetailTableViewController.m in Sources */,
 				1F49DFDD1B94EC2A008AEB3D /* ViewController.m in Sources */,
+				1F7676BF1B98C61100730C76 /* Reminder.m in Sources */,
 				1FD9B9491B96121600137788 /* CodeChallenge.m in Sources */,
 				1FD9B9411B96092D00137788 /* MapViewController.m in Sources */,
 				1F49DFDA1B94EC2A008AEB3D /* AppDelegate.m in Sources */,
@@ -507,6 +523,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/Jeff/Downloads,
 				);
 				INFOPLIST_FILE = MapApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -521,6 +538,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/Jeff/Downloads,
 				);
 				INFOPLIST_FILE = MapApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
