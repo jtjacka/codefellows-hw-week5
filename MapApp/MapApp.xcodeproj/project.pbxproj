@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F16F27B1B97D26E00EB778D /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F16F27A1B97D26E00EB778D /* ParseUI.framework */; };
 		1F49DFD71B94EC2A008AEB3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFD61B94EC2A008AEB3D /* main.m */; };
 		1F49DFDA1B94EC2A008AEB3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFD91B94EC2A008AEB3D /* AppDelegate.m */; };
 		1F49DFDD1B94EC2A008AEB3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFDC1B94EC2A008AEB3D /* ViewController.m */; };
@@ -56,7 +55,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F16F27A1B97D26E00EB778D /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = ../../../../../Downloads/ParseUI.framework; sourceTree = "<group>"; };
 		1F49DFD11B94EC2A008AEB3D /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F49DFD51B94EC2A008AEB3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F49DFD61B94EC2A008AEB3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				1FB10AEE1B9780E1004C2685 /* Security.framework in Frameworks */,
 				1FB10AEC1B9780AE004C2685 /* QuartzCore.framework in Frameworks */,
 				1FB10AEA1B9780A7004C2685 /* CoreLocation.framework in Frameworks */,
-				1F16F27B1B97D26E00EB778D /* ParseUI.framework in Frameworks */,
 				1FB10AE81B9780A0004C2685 /* CoreGraphics.framework in Frameworks */,
 				1FB10AE61B978099004C2685 /* CFNetwork.framework in Frameworks */,
 				1FB10AE41B978091004C2685 /* AudioToolbox.framework in Frameworks */,
@@ -261,7 +258,6 @@
 				1FB10AF91B978137004C2685 /* Social.framework */,
 				1FB10AF71B97812C004C2685 /* Accounts.framework */,
 				1FB10AF51B978125004C2685 /* libsqlite3.dylib */,
-				1F16F27A1B97D26E00EB778D /* ParseUI.framework */,
 				1FB10AF31B978103004C2685 /* libz.dylib */,
 				1FB10AF11B9780F7004C2685 /* SystemConfiguration.framework */,
 				1FB10AEF1B9780EB004C2685 /* StoreKit.framework */,
