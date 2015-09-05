@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>3D805193-115F-4F14-85C4-101E3113E808</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>MapApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>C06FC837E9736C4344FFF0CFC454D56CD6CEEFCB</key>
 		<string>https://github.com/jtjacka/codefellows-hw-week5.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MapApp/MapApp.xcodeproj/project.xcworkspace</string>
+	<string>MapApp/MapApp.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C06FC837E9736C4344FFF0CFC454D56CD6CEEFCB</key>

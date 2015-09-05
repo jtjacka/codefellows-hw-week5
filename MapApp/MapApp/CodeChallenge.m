@@ -18,6 +18,16 @@
 
 @implementation CodeChallenge
 
+-(id)init {
+    self = [super init];
+    if(self) {
+        self.stackArray = [[NSMutableArray alloc] init];
+        self.queueArray = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
+
 //MARK: Monday - Stack
 -(void)AddToStack:(id)newObject {
   

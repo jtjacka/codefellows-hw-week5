@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "ReminderDetailTableViewController.h"
+#import "CodeChallenge.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate>
 
@@ -149,6 +150,10 @@
   }
   
 }
+
+#pragma mark - Code Challenge Tests
+CodeChallenge *tests = [[CodeChallenge alloc]init];
+
 
 
 @end
