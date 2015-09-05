@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F16F27B1B97D26E00EB778D /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F16F27A1B97D26E00EB778D /* ParseUI.framework */; };
 		1F49DFD71B94EC2A008AEB3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFD61B94EC2A008AEB3D /* main.m */; };
 		1F49DFDA1B94EC2A008AEB3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFD91B94EC2A008AEB3D /* AppDelegate.m */; };
 		1F49DFDD1B94EC2A008AEB3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F49DFDC1B94EC2A008AEB3D /* ViewController.m */; };
@@ -42,6 +41,7 @@
 		1FD9B9431B960C5500137788 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD9B9421B960C5500137788 /* MapKit.framework */; };
 		1FD9B9491B96121600137788 /* CodeChallenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9B9481B96121600137788 /* CodeChallenge.m */; };
 		1FD9B94D1B964B3F00137788 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9B94C1B964B3F00137788 /* Constants.m */; };
+		7BB3D55F1B9AC61A00013CEA /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3D55E1B9AC61A00013CEA /* Node.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F16F27A1B97D26E00EB778D /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = ../../../../../Downloads/ParseUI.framework; sourceTree = "<group>"; };
 		1F49DFD11B94EC2A008AEB3D /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F49DFD51B94EC2A008AEB3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F49DFD61B94EC2A008AEB3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,6 +102,8 @@
 		1FD9B94A1B96123C00137788 /* CodeChallenge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeChallenge.h; sourceTree = "<group>"; };
 		1FD9B94B1B964B3F00137788 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1FD9B94C1B964B3F00137788 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		7BB3D55D1B9AC61A00013CEA /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		7BB3D55E1B9AC61A00013CEA /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +120,6 @@
 				1FB10AEE1B9780E1004C2685 /* Security.framework in Frameworks */,
 				1FB10AEC1B9780AE004C2685 /* QuartzCore.framework in Frameworks */,
 				1FB10AEA1B9780A7004C2685 /* CoreLocation.framework in Frameworks */,
-				1F16F27B1B97D26E00EB778D /* ParseUI.framework in Frameworks */,
 				1FB10AE81B9780A0004C2685 /* CoreGraphics.framework in Frameworks */,
 				1FB10AE61B978099004C2685 /* CFNetwork.framework in Frameworks */,
 				1FB10AE41B978091004C2685 /* AudioToolbox.framework in Frameworks */,
@@ -212,6 +212,8 @@
 			children = (
 				1FD9B9481B96121600137788 /* CodeChallenge.m */,
 				1FD9B94A1B96123C00137788 /* CodeChallenge.h */,
+				7BB3D55D1B9AC61A00013CEA /* Node.h */,
+				7BB3D55E1B9AC61A00013CEA /* Node.m */,
 			);
 			name = "Code Challenge";
 			sourceTree = "<group>";
@@ -256,7 +258,6 @@
 				1FB10AF91B978137004C2685 /* Social.framework */,
 				1FB10AF71B97812C004C2685 /* Accounts.framework */,
 				1FB10AF51B978125004C2685 /* libsqlite3.dylib */,
-				1F16F27A1B97D26E00EB778D /* ParseUI.framework */,
 				1FB10AF31B978103004C2685 /* libz.dylib */,
 				1FB10AF11B9780F7004C2685 /* SystemConfiguration.framework */,
 				1FB10AEF1B9780EB004C2685 /* StoreKit.framework */,
@@ -383,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB3D55F1B9AC61A00013CEA /* Node.m in Sources */,
 				1F49DFFB1B94FFF5008AEB3D /* User.m in Sources */,
 				1F7676BD1B98B05500730C76 /* ReminderDetailTableViewController.m in Sources */,
 				1F49DFDD1B94EC2A008AEB3D /* ViewController.m in Sources */,

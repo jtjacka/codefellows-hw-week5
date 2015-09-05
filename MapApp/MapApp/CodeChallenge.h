@@ -6,14 +6,15 @@
 //  Copyright (c) 2015 Jeffrey Jacka. All rights reserved.
 //
 
-#ifndef MapApp_CodeChallenge_h
-#define MapApp_CodeChallenge_h
-
-
-#endif
-
 @interface CodeChallenge : NSObject
 
-
+-(void)AddToStack:(id)newObject;
+-(id)RemoveFromStack;
+-(void)AddToQueue:(id)newObject;
+-(id)RemoveFromQueue;
+-(void)printStack;
+-(void)printQueue;
+-(BOOL)isAnagram:(NSString *)firstString secondString:(NSString *)secondString;
+-(int)sumOfNumbersInString:(NSString *)stringToSum;
 
 @end

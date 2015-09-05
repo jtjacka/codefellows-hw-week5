@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *toolBarButton3;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
-
 @end
 
 @implementation MapViewController
@@ -45,6 +44,31 @@
   
     //Taken from Lecture
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(47.6235, -122.3363), 10, 10) animated:true];
+    
+    #pragma mark - Code Challenge Tests
+    CodeChallenge *tests = [[CodeChallenge alloc]init];
+    
+    //Monday
+    [tests AddToQueue:@"test1"];
+    [tests AddToQueue:@"test2"];
+    [tests printStack];
+    NSString *removedFromQueue = [tests RemoveFromQueue];
+    NSLog(@"removed from queue: %@",removedFromQueue);
+    
+    [tests AddToStack:@"test1"];
+    [tests AddToStack:@"test2"];
+    [tests printStack];
+    NSString *removedFromStack = [tests RemoveFromStack];
+    NSLog(@"removed from stack: %@",removedFromStack);
+    
+    //Tuesday
+    BOOL isAnagram = [tests isAnagram:@"hamlet" secondString:@"amleth"];
+    NSLog(@"String is an anagram? %s", isAnagram ? "true" : "false");
+    //ternary... bitch
+    
+    //Wednesday
+    int sum = [tests sumOfNumbersInString:@"J4e6f8f93"];
+
 
 }
 
@@ -97,6 +121,7 @@
 
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
   [self dismissViewControllerAnimated:YES completion:nil];
+  [PFUser enableAutomaticUser];
 }
 
 
@@ -151,8 +176,7 @@
   
 }
 
-#pragma mark - Code Challenge Tests
-CodeChallenge *tests = [[CodeChallenge alloc]init];
+
 
 
 
