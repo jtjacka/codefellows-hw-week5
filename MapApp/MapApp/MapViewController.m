@@ -13,6 +13,7 @@
 #import <ParseUI/ParseUI.h>
 #import "ReminderDetailTableViewController.h"
 #import "CodeChallenge.h"
+#import "Constants.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate>
 
@@ -29,6 +30,8 @@
 - (void)viewDidLoad {
   
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotification:) name:kReminderNotication object:nil];
   
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = true;
@@ -68,6 +71,7 @@
     
     //Wednesday
     int sum = [tests sumOfNumbersInString:@"J4e6f8f93"];
+    NSLog(@"Sum from String: %d", sum);
 
 
 }
@@ -79,6 +83,10 @@
     logInViewController.delegate = self;
     [self presentViewController:logInViewController animated:YES completion:nil];
   }
+}
+
+-(void)reminderNotification:(NSNotification *)notification {
+    NSLog(@"Notification Fired!");
 }
 
 - (void)didReceiveMemoryWarning {
