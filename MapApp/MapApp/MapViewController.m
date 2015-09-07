@@ -15,6 +15,7 @@
 #import "CodeChallenge.h"
 #import "Constants.h"
 #import "Reminder.h"
+#import "ParseService.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate>
 
@@ -33,6 +34,13 @@
   [super viewDidLoad];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotificationAdded:) name:kReminderNotication object:nil];
+  
+  //Load Current Reminders for the User
+  [ParseService queryForUserReminders:^(NSArray *reminders) {
+    for (Reminder *reminder in reminders) {
+      [self createRegion:reminder.location.longitude latitude:reminder.location.latitude regionName:reminder.name regionRadius:[reminder.radius floatValue]];
+    }
+  }];
   
   self.mapView.delegate = self;
   self.mapView.showsUserLocation = true;

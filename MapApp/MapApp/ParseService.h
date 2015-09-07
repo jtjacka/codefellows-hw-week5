@@ -10,4 +10,6 @@
 
 @interface ParseService : NSObject
 
++(void)queryForUserReminders:(void (^)(NSArray *reminders))completion;
+
 @end

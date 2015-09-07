@@ -12,12 +12,12 @@
 
 @implementation ParseService
 
-+(void)queryForUserReminders {
++(void)queryForUserReminders:(void (^)(NSArray *reminders))completion {
     PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
     [query whereKey:@"parent" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            //call completion handler
+          completion(objects);
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
