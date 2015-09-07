@@ -8,4 +8,4 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kMyCountry;
+extern NSString *const kReminderNotication;
