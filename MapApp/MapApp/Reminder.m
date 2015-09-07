@@ -15,6 +15,7 @@
 @dynamic name;
 @dynamic location;
 @dynamic parent;
+@dynamic radius;
 
 + (void)load {
   [self registerSubclass];

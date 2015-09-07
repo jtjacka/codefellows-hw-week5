@@ -22,56 +22,59 @@
 @implementation ReminderDetailTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.delegate = self;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  [super viewDidLoad];
+  
+  self.tableView.delegate = self;
+  
+  // Uncomment the following line to preserve selection between presentations.
+  // self.clearsSelectionOnViewWillAppear = NO;
+  
+  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 3;
+  // Return the number of sections.
+  return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 1;
+  // Return the number of rows in the section.
+  return 1;
 }
 
 - (IBAction)changeRadiusSlider:(UISlider *)sender {
-    self.radiusLabel.text = [NSString stringWithFormat:@"%.01f M", sender.value];
+  self.radiusLabel.text = [NSString stringWithFormat:@"%.01f M", sender.value];
 }
 
 - (IBAction)saveAction:(id)sender {
-    Reminder *newReminder = [[Reminder alloc] init];
-    
-    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.pinLocation.latitude longitude:self.pinLocation.longitude];
-    newReminder.name = self.nameTextField.text;
-    
-    User *currentUser = (User *)[PFUser currentUser];
-    
-    [newReminder setObject:currentUser forKey:@"parent"];
-    [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        NSLog(@"Save reminder %d",succeeded);
-    }];
-    
-    //Send Notificaton
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotication object:self];
-    
+  Reminder *newReminder = [[Reminder alloc] init];
+  
+  newReminder.location = [PFGeoPoint geoPointWithLatitude:self.pinLocation.latitude longitude:self.pinLocation.longitude];
+  newReminder.name = self.nameTextField.text;
+  newReminder.radius = [NSNumber numberWithFloat:self.radiusSlider.value];
+  
+  User *currentUser = (User *)[PFUser currentUser];
+  
+  [newReminder setObject:currentUser forKey:@"parent"];
+  [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    NSLog(@"Save reminder %d",succeeded);
+  }];
+  
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotication object:newReminder];
+  
+  [self.navigationController popViewControllerAnimated:YES];
+  
 }
 
 /*

@@ -8,11 +8,13 @@
 
 #import <Parse/Parse.h>
 #import "User.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface Reminder : PFObject<PFSubclassing>
 
 @property (strong, nonatomic)  NSString *name;
 @property (strong, nonatomic) PFGeoPoint *location;
 @property (strong, nonatomic) User *parent;
+@property (strong, nonatomic) NSNumber *radius;
 
 @end

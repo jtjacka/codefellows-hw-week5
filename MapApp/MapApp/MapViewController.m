@@ -1,6 +1,6 @@
 //
 //  MapViewController.m
-//  
+//
 //
 //  Created by Jeffrey Jacka on 9/1/15.
 //
@@ -14,6 +14,7 @@
 #import "ReminderDetailTableViewController.h"
 #import "CodeChallenge.h"
 #import "Constants.h"
+#import "Reminder.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, PFLogInViewControllerDelegate>
 
@@ -29,51 +30,55 @@
 
 - (void)viewDidLoad {
   
-    [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotification:) name:kReminderNotication object:nil];
+  [super viewDidLoad];
   
-    self.mapView.delegate = self;
-    self.mapView.showsUserLocation = true;
-    
-    //CLLocation Manager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = 10;
-    
-    [self.locationManager requestWhenInUseAuthorization];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotificationAdded:) name:kReminderNotication object:nil];
   
-    [self.locationManager startUpdatingLocation];
+  self.mapView.delegate = self;
+  self.mapView.showsUserLocation = true;
   
-    //Taken from Lecture
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(47.6235, -122.3363), 10, 10) animated:true];
-    
-    #pragma mark - Code Challenge Tests
-    CodeChallenge *tests = [[CodeChallenge alloc]init];
-    
-    //Monday
-    [tests AddToQueue:@"test1"];
-    [tests AddToQueue:@"test2"];
-    [tests printStack];
-    NSString *removedFromQueue = [tests RemoveFromQueue];
-    NSLog(@"removed from queue: %@",removedFromQueue);
-    
-    [tests AddToStack:@"test1"];
-    [tests AddToStack:@"test2"];
-    [tests printStack];
-    NSString *removedFromStack = [tests RemoveFromStack];
-    NSLog(@"removed from stack: %@",removedFromStack);
-    
-    //Tuesday
-    BOOL isAnagram = [tests isAnagram:@"hamlet" secondString:@"amleth"];
-    NSLog(@"String is an anagram? %s", isAnagram ? "true" : "false");
-    //ternary... bitch
-    
-    //Wednesday
-    int sum = [tests sumOfNumbersInString:@"J4e6f8f93"];
-    NSLog(@"Sum from String: %d", sum);
-
-
+  //CLLocation Manager
+  self.locationManager = [[CLLocationManager alloc] init];
+  self.locationManager.delegate = self;
+  self.locationManager.desiredAccuracy = 10;
+  
+  [self.locationManager requestAlwaysAuthorization];
+  
+  [self.locationManager startUpdatingLocation];
+  
+  //Taken from Lecture
+  [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(47.6235, -122.3363), 10, 10) animated:true];
+  
+#pragma mark - Code Challenge Tests
+  CodeChallenge *tests = [[CodeChallenge alloc]init];
+  
+  //Monday
+  [tests AddToQueue:@"test1"];
+  [tests AddToQueue:@"test2"];
+  [tests printStack];
+  NSString *removedFromQueue = [tests RemoveFromQueue];
+  NSLog(@"removed from queue: %@",removedFromQueue);
+  
+  [tests AddToStack:@"test1"];
+  [tests AddToStack:@"test2"];
+  [tests printStack];
+  NSString *removedFromStack = [tests RemoveFromStack];
+  NSLog(@"removed from stack: %@",removedFromStack);
+  
+  //Tuesday
+  BOOL isAnagram = [tests isAnagram:@"hamlet" secondString:@"amleth"];
+  NSLog(@"String is an anagram? %s", isAnagram ? "true" : "false");
+  //ternary... bitch
+  
+  //Wednesday
+  int sum = [tests sumOfNumbersInString:@"J4e6f8f93"];
+  NSLog(@"Sum from String: %d", sum);
+  
+  //Thursday - Node
+  
+  
+  
+  
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -85,13 +90,47 @@
   }
 }
 
--(void)reminderNotification:(NSNotification *)notification {
-    NSLog(@"Notification Fired!");
+-(void)reminderNotificationAdded:(NSNotification *)notification {
+  NSLog(@"Notification Fired!");
+  
+  Reminder *newReminder = notification.object;
+
+  [self createRegion:newReminder.location.longitude latitude:newReminder.location.latitude regionName:newReminder.name regionRadius:[newReminder.radius floatValue]];
+  
+  
+  
 }
 
+-(void)createRegion:(double)longitude latitude:(double)latitude regionName:(NSString *)regionName regionRadius:(float)radius {
+  if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+    
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(latitude, longitude) radius:radius identifier:regionName];
+    
+    [self.locationManager startMonitoringForRegion:region];
+    
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(latitude, longitude) radius:radius];
+    
+    [self.mapView addOverlay:circle];
+    
+  }
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+ 
+  MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:overlay];
+  
+  circleRenderer.strokeColor = [UIColor blueColor];
+  circleRenderer.fillColor = [UIColor redColor];
+  circleRenderer.alpha = 0.5;
+  
+  return circleRenderer;
+}
+
+
+
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)leftBarButton:(id)sender {
@@ -135,13 +174,13 @@
 
 #pragma mark - CLLocationManagerDelegate
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    switch (status) {
-        case kCLAuthorizationStatusAuthorizedWhenInUse:
-            [self.locationManager startUpdatingLocation];
-            break;
-        default:
-            break;
-    }
+  switch (status) {
+    case kCLAuthorizationStatusAuthorizedWhenInUse:
+      [self.locationManager startUpdatingLocation];
+      break;
+    default:
+      break;
+  }
 }
 
 #pragma mark - Map View Delegate
