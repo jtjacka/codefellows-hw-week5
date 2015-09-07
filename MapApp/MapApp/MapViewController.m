@@ -29,9 +29,12 @@
 
 @implementation MapViewController
 
+#pragma mark - Lifecycle
 - (void)viewDidLoad {
   
   [super viewDidLoad];
+  
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotificationAdded:) name:kReminderNotication object:nil];
   
@@ -57,35 +60,8 @@
   //Taken from Lecture
   [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(47.6235, -122.3363), 10, 10) animated:true];
   
-#pragma mark - Code Challenge Tests
-  CodeChallenge *tests = [[CodeChallenge alloc]init];
-  
-  //Monday
-  [tests AddToQueue:@"test1"];
-  [tests AddToQueue:@"test2"];
-  [tests printStack];
-  NSString *removedFromQueue = [tests RemoveFromQueue];
-  NSLog(@"removed from queue: %@",removedFromQueue);
-  
-  [tests AddToStack:@"test1"];
-  [tests AddToStack:@"test2"];
-  [tests printStack];
-  NSString *removedFromStack = [tests RemoveFromStack];
-  NSLog(@"removed from stack: %@",removedFromStack);
-  
-  //Tuesday
-  BOOL isAnagram = [tests isAnagram:@"hamlet" secondString:@"amleth"];
-  NSLog(@"String is an anagram? %s", isAnagram ? "true" : "false");
-  //ternary... bitch
-  
-  //Wednesday
-  int sum = [tests sumOfNumbersInString:@"J4e6f8f93"];
-  NSLog(@"Sum from String: %d", sum);
-  
-  //Thursday - Node
-  
-  
-  
+  //Code Challenges
+  [self codeChallenge];
   
 }
 
@@ -97,6 +73,14 @@
     [self presentViewController:logInViewController animated:YES completion:nil];
   }
 }
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - Regions
 
 -(void)reminderNotificationAdded:(NSNotification *)notification {
   NSLog(@"Notification Fired!");
@@ -134,12 +118,19 @@
   return circleRenderer;
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+  NSLog(@"Region Entered");
+  
+  UILocalNotification *newNotification = [[UILocalNotification alloc]init];
+  
+  newNotification.alertTitle = @"Entered Region";
+  newNotification.alertBody = @"You have entered a region with a reminder";
+  
+  [[UIApplication sharedApplication] presentLocalNotificationNow:newNotification];
 }
+
+
+
 
 - (IBAction)leftBarButton:(id)sender {
   [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(47.444913, -121.426391), 100, 100) animated:true];
@@ -169,15 +160,7 @@
   }
 }
 
-- (void)logInViewController:(PFLogInViewController *)controller
-               didLogInUser:(PFUser *)user {
-  [self dismissViewControllerAnimated:YES completion:nil];
-}
 
-- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
-  [self dismissViewControllerAnimated:YES completion:nil];
-  [PFUser enableAutomaticUser];
-}
 
 
 #pragma mark - CLLocationManagerDelegate
@@ -231,8 +214,51 @@
   
 }
 
+#pragma mark - Parse
+- (void)logInViewController:(PFLogInViewController *)controller
+               didLogInUser:(PFUser *)user {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
 
+- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
+  [self dismissViewControllerAnimated:YES completion:nil];
+  [PFUser enableAutomaticUser];
+}
 
+#pragma mark - Code Challenge Tests
 
+-(void)codeChallenge {
+  CodeChallenge *tests = [[CodeChallenge alloc]init];
+  
+  //MARK: Monday
+  [tests AddToQueue:@"test1"];
+  [tests AddToQueue:@"test2"];
+  [tests printStack];
+  NSString *removedFromQueue = [tests RemoveFromQueue];
+  NSLog(@"removed from queue: %@",removedFromQueue);
+  
+  [tests AddToStack:@"test1"];
+  [tests AddToStack:@"test2"];
+  [tests printStack];
+  NSString *removedFromStack = [tests RemoveFromStack];
+  NSLog(@"removed from stack: %@",removedFromStack);
+  
+  //MARK: Tuesday
+  BOOL isAnagram = [tests isAnagram:@"hamlet" secondString:@"amleth"];
+  NSLog(@"String is an anagram? %s", isAnagram ? "true" : "false");
+  //ternary... bitch
+  
+  //MARK: Wednesday
+  int sum = [tests sumOfNumbersInString:@"J4e6f8f93"];
+  NSLog(@"Sum from String: %d", sum);
+  
+  //MARK: Thursday - Node
+  
+  
+}
+
+-(void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

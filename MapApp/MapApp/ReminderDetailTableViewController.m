@@ -70,7 +70,9 @@
     NSLog(@"Save reminder %d",succeeded);
   }];
   
-  
+  [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+
+
   [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotication object:newReminder];
   
   [self.navigationController popViewControllerAnimated:YES];
