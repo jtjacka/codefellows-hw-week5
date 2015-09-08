@@ -53,7 +53,7 @@
 }
 
 - (IBAction)changeRadiusSlider:(UISlider *)sender {
-  self.radiusLabel.text = [NSString stringWithFormat:@"%.01f M", sender.value];
+  self.radiusLabel.text = [NSString stringWithFormat:@"%.01f m", sender.value];
 }
 
 - (IBAction)saveAction:(id)sender {

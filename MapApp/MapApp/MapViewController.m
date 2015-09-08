@@ -38,12 +38,16 @@
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotificationAdded:) name:kReminderNotication object:nil];
   
-  //Load Current Reminders for the User
-  [ParseService queryForUserReminders:^(NSArray *reminders) {
-    for (Reminder *reminder in reminders) {
-      [self createRegion:reminder.location.longitude latitude:reminder.location.latitude regionName:reminder.name regionRadius:[reminder.radius floatValue]];
+    
+    if([PFUser currentUser]) {
+        //Load Current Reminders for the User
+        [ParseService queryForUserReminders:^(NSArray *reminders) {
+            for (Reminder *reminder in reminders) {
+                [self createRegion:reminder.location.longitude latitude:reminder.location.latitude regionName:reminder.name regionRadius:[reminder.radius floatValue]];
+            }
+        }];
     }
-  }];
+
   
   self.mapView.delegate = self;
   self.mapView.showsUserLocation = true;
@@ -54,7 +58,6 @@
   self.locationManager.desiredAccuracy = 10;
   
   [self.locationManager requestAlwaysAuthorization];
-  
   [self.locationManager startUpdatingLocation];
   
   //Taken from Lecture
@@ -66,17 +69,50 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated {
-  //Parse Login
+    [self LogInStatus];
   if(![PFUser currentUser]) {
-    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-    logInViewController.delegate = self;
-    [self presentViewController:logInViewController animated:YES completion:nil];
+      [self showLoginView];
   }
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshView {
+    [self viewDidLoad];
+}
+
+-(void) showLoginView {
+    if([PFAnonymousUtils isLinkedWithUser:[PFUser currentUser]]) {
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        logInViewController.delegate = self;
+        [self presentViewController:logInViewController animated:YES completion:nil];
+    } else if ([PFUser currentUser]) {
+        [PFUser logOut];
+        [self.mapView removeOverlays:self.mapView.overlays];
+        [self LogInStatus];
+        [self refreshView];
+    } else {
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        logInViewController.delegate = self;
+        [self presentViewController:logInViewController animated:YES completion:nil];
+    }
+}
+
+-(void)LogInStatus {
+    //Add Tab Bar Item
+    if([PFAnonymousUtils isLinkedWithUser:[PFUser currentUser]]) {
+        UIBarButtonItem *logIn = [[UIBarButtonItem alloc] initWithTitle:@"Log In" style:UIBarButtonItemStylePlain target:self action:@selector(showLoginView)];
+        self.navigationItem.rightBarButtonItem = logIn;
+    } else if ([PFUser currentUser]) {
+        UIBarButtonItem *logOut = [[UIBarButtonItem alloc] initWithTitle:@"Log Out" style:UIBarButtonItemStylePlain target:self action:@selector(showLoginView)];
+        self.navigationItem.rightBarButtonItem = logOut;
+    } else {
+        UIBarButtonItem *logIn = [[UIBarButtonItem alloc] initWithTitle:@"Log In" style:UIBarButtonItemStylePlain target:self action:@selector(showLoginView)];
+        self.navigationItem.rightBarButtonItem = logIn;
+    }
 }
 
 
@@ -88,9 +124,6 @@
   Reminder *newReminder = notification.object;
 
   [self createRegion:newReminder.location.longitude latitude:newReminder.location.latitude regionName:newReminder.name regionRadius:[newReminder.radius floatValue]];
-  
-  
-  
 }
 
 -(void)createRegion:(double)longitude latitude:(double)latitude regionName:(NSString *)regionName regionRadius:(float)radius {
@@ -209,6 +242,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(MKPointAnnotation *)sender {
   if ([segue.identifier  isEqualToString: @"ShowReminderDetail"]) {
     ReminderDetailTableViewController *destinationVC = segue.destinationViewController;
+    [self.mapView removeAnnotation:sender];
     destinationVC.pinLocation = sender.coordinate;
   }
   
@@ -218,6 +252,8 @@
 - (void)logInViewController:(PFLogInViewController *)controller
                didLogInUser:(PFUser *)user {
   [self dismissViewControllerAnimated:YES completion:nil];
+    [self LogInStatus];
+    [self refreshView];
 }
 
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
